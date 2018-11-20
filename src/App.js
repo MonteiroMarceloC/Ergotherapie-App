@@ -20,9 +20,6 @@ class App extends Component {
   render(){
     return (
       <div className="App">
-        <header className="App-header">
-          <p className="App-title"> Willkomen </p>
-        </header>
         {
           this.state.page==='start' &&
           <StartPage onStartPress={this.changeScreen1}/>

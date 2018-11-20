@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './index.css';
 import MyButton from './MyButton.js';
+import MyHeader from './MyHeader.js';
 import Suppe from './imgs/suppe.jpg';
 import Cats from './imgs/cats.jpg';
 import Dog from './imgs/dogwater.jpg';
@@ -83,9 +84,9 @@ class PlayPage extends Component {
 
   render() {
     return (
-      <div id='tabela'>
-        <p className="App-intro">Playing!</p>
-               
+      <div>
+      <MyHeader num={2} />
+      <div id='tabela'>               
         {this.state.alldata[1][3] &&
           <table>
           {this.state.alldata.map((row, index)=>
@@ -100,6 +101,7 @@ class PlayPage extends Component {
           )}
           </table>
         }
+      </div>
       </div>
     );
   }

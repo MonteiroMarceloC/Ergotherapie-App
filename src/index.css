@@ -16,12 +16,13 @@ body {
 .App-header {
     background-color: #222;
     height: 50px;
-    padding: 20px;
+    padding: 40px;
     color: white;
+    font-size: 1.8em;
 }
 
 .App-title {
-    font-size: 1.5em;
+    font-size: 0.6em;
 }
 
 .App-intro {
@@ -51,7 +52,7 @@ body {
 #tabela {
     margin: 5px auto;
     max-height: 100px;
-    width: 80%;
+    width: 90%;
 }
 
 td {
