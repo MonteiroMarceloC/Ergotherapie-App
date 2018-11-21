@@ -14,16 +14,14 @@ function mainreducer(state = initialAppState, action){
 
     switch(action.type){
         case ADD_DONE :
-            var {name} = action;
             return {
                 ...state,
-                done_words: state.done_words.push(name), //MAYBE [name]
+                done_words: state.done_words.push(action.name), //maybe [action.name]
             }
         case SET_SELECTION :
-            var {name} = action;
             return {
                 ...state,
-                selection: name,
+                selection: action.name,
             }
             case RESET_SELECTION :
             return {

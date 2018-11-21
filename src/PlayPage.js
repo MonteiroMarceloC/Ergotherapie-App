@@ -67,19 +67,19 @@ class PlayPage extends Component {
       this.setState({alldata: arrMaster})
   }
   componentDidUpdate(){
-    console.log(this.state)
+    //console.log(this.state)
   }
 
   handleClick(e){
-    console.log(`clicou em ${e.name}`)
-    if (this.state.lastclick == ''){
+    if (this.state.lastclick === ''){
       this.setState({lastclick: e.name})
-    } else if (this.state.lastclick == e.name){
-      this.setState((prev)=>{
+    } else if (this.state.lastclick === e.name){
+      this.setState((prev)=>({
         done: prev.done.push(e.name)
-      })
-      this.setState({lastclick: ''})
+      }))
+      this.setState({lastclick: ''});
     }
+    //console.log('State', this.state);
   }
 
   render() {
@@ -87,8 +87,8 @@ class PlayPage extends Component {
       <div>
       <MyHeader num={2} />
       <div id='tabela'>               
-        {this.state.alldata[1][3] &&
-          <table>
+        {this.state.alldata[1][3] && //wait until alldata matrix is ready
+          <table><tbody>
           {this.state.alldata.map((row, index)=>
           <tr>
             {row.map((elem)=>
@@ -99,7 +99,7 @@ class PlayPage extends Component {
             )}
           </tr>
           )}
-          </table>
+          </tbody></table>
         }
       </div>
       </div>
