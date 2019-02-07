@@ -34,6 +34,30 @@ const data=[
   {
     name: 'ausgemacht',
     img: Machine
+  },
+  {
+    name: 'gesalzen',
+    img: Suppe,
+  },
+  {
+    name: 'gefüttert',
+    img: Cats
+  },
+  {
+    name: 'Wasser gegeben',
+    img: Dog
+  },
+  {
+    name: 'eingekauft',
+    img: Shop
+  },
+  {
+    name: 'zugezogen',
+    img: Door
+  },
+  {
+    name: 'ausgemacht',
+    img: Machine
   }
 ]
 
@@ -42,7 +66,7 @@ class PlayPage extends Component {
     super(props);
     this.handleClick = this.handleClick.bind(this);
     this.state={
-      alldata: data.concat(data),
+      alldata: data,
       lastclick:'',
       done: [],
       selectedIndexes: {}
@@ -92,10 +116,8 @@ class PlayPage extends Component {
           {this.state.alldata.map((row, index)=>
           <tr>
             {row.map((elem)=>
-                <MyButton what={elem} isSelected={this.state.selectedIndexes[index]}
-                  clickedMe={(e) => this.handleClick(e)}
-                  
-                  />
+                <MyButton what={elem}             
+                />
             )}
           </tr>
           )}
