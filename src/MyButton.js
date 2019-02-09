@@ -8,47 +8,53 @@ class MyButton extends Component {
     super(props)
     this.state={  //default colors for the button
       color: "#000",
-      colortxt: "#fff"
+      colortxt: "#fff",
+      lock: false,
     }
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick()
   {
-    //TODO: test if I am white
-   /*if ( ){//if it is on appState.done array
-      this.setState({color: "#c22", colortxt: "#c22"})//red
-    }
-    else */ if (this.props.selection === ''){ //if selection is empty (first click)
-      this.setState({color: "#08c", colortxt: "#08c"})//blue
-      this.props.dispatch(setSelection(this.props.what.name))//setSelection to MyButton's name
-    }
-    else if (this.props.what.name === this.props.selection){ //if the selection is my pair
-      this.makemeGreen();
-      this.props.dispatch(addDone(this.props.what.name)); //add to appState.done array
+    if (!this.state.lock){
+      if ( this.props.done.includes(this.props.what.name) ){//if it is on appState.done array
+        this.setState({color: "#c22", colortxt: "#c22"})//red
+        this.setState({lock: true})
+        this.props.dispatch(newTurn());
 
+      }
+      else if (this.props.selection === ''){ //if selection is empty (first click)
+        this.setState({color: "#08c", colortxt: "#08c"})//blue
+        this.props.dispatch(setSelection(this.props.what.name))//setSelection to MyButton's name
+        this.setState({lock: true})
+      }
+      else if (this.props.what.name === this.props.selection){ //if the selection is my pair
+        this.makemeGreen();
+        this.props.dispatch(addDone(this.props.what.name)); //add to appState.done array
+
+      }
+      else {
+        this.makemeRed();
+      }
+      this.props.dispatch(newTurn());
     }
-    else {
-      this.makemeRed();
-    }
-    this.props.dispatch(newTurn());
   }
 
   makemeGreen(){
-    this.setState({color: "#2c2", colortxt: "#2c2"})
-    console.log(this.props.done);
+    this.setState({color: "#2c2", colortxt: "#2c2", lock: true})
+    this.setState({lock: false})
   }
 
   makemeRed(){
-    this.setState({color: "#c22", colortxt: "#c22"})
+    this.setState({color: "#c22", colortxt: "#c22", lock: false})
     setTimeout(function() { //Start the timer to turn white again
       this.setState({color: "#000", colortxt: "#fff"})
     }.bind(this), 1500)
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.state.color == "#08c" && this.props.new_turn) {
-      if(this.props.done.indexOf(this.props.what.name)>=0 && this.props.selection == this.props.what.name){
+    if (this.state.color === "#08c" && this.props.new_turn) {
+      if(this.props.done.indexOf(this.props.what.name)>=0 && this.props.selection === this.props.what.name){
         this.makemeGreen();
       } else {
         this.makemeRed();

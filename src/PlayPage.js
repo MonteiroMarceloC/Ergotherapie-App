@@ -34,39 +34,14 @@ const data=[
   {
     name: 'ausgemacht',
     img: Machine
-  },
-  {
-    name: 'gesalzen',
-    img: Suppe,
-  },
-  {
-    name: 'gefüttert',
-    img: Cats
-  },
-  {
-    name: 'Wasser gegeben',
-    img: Dog
-  },
-  {
-    name: 'eingekauft',
-    img: Shop
-  },
-  {
-    name: 'zugezogen',
-    img: Door
-  },
-  {
-    name: 'ausgemacht',
-    img: Machine
-  }
-]
+  }]
 
 class PlayPage extends Component {
   constructor(props){
     super(props);
     this.handleClick = this.handleClick.bind(this);
     this.state={
-      alldata: data,
+      alldata: [],
       lastclick:'',
       done: [],
       selectedIndexes: {}
@@ -75,15 +50,14 @@ class PlayPage extends Component {
 
   componentDidMount(){
       //randomize array of data
-      let array = this.state.alldata;
+      let array = [...data,...data,...data,...data];
       for (let i = array.length - 1; i > 0; i--) {
           let j = Math.floor(Math.random() * (i + 1));
-          console.log(j);
           let aux = array[i];
           array[i] = array[j];
           array[j] = aux;
       }
-      let arrSize = 4;
+      let arrSize = 8;
       let arrMaster=[];
       for (let i=0; i<array.length; i+=arrSize) {
         arrMaster.push(array.slice(i,i+arrSize));
@@ -91,7 +65,7 @@ class PlayPage extends Component {
       this.setState({alldata: arrMaster})
   }
   componentDidUpdate(){
-    //console.log(this.state)
+
   }
 
   handleClick(e){
@@ -103,7 +77,6 @@ class PlayPage extends Component {
       }))
       this.setState({lastclick: ''});
     }
-    //console.log('State', this.state);
   }
 
   render() {
@@ -111,12 +84,12 @@ class PlayPage extends Component {
       <div>
       <MyHeader num={2} />
       <div id='tabela'>               
-        {this.state.alldata[1][3] && //wait until alldata matrix is ready
+        {this.state.alldata[1] && //wait until alldata matrix is ready
           <table><tbody>
           {this.state.alldata.map((row, index)=>
           <tr>
             {row.map((elem)=>
-                <MyButton what={elem}             
+                <MyButton what={elem}           
                 />
             )}
           </tr>

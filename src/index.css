@@ -56,16 +56,25 @@ body {
 }
 
 td {
-    width: 20%;
+    width: 11%;
     height: auto;
     border: 3px solid black;
     border-radius: 3px;
+    padding: 0;
 }
 
 .img-btn {
     width: 100%;
     height: auto;
+    padding: 0;
+    margin: 0 auto;
     overflow: hidden;
+    float: left;
+}
+
+.btn-txt {
+    font-size: large;
+    float: left;
 }
 
 @keyframes App-logo-spin {
