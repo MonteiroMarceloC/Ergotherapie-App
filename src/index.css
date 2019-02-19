@@ -1,44 +1,38 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: Roboto, sans-serif
 }
 
 .App {
-    text-align: center;
-}
-
-.App-logo {
-    animation: App-logo-spin infinite 20s linear;
-    height: 80px;
+    text-align: center
 }
 
 .App-header {
     background-color: #222;
     height: 50px;
-    padding: 40px;
-    color: white;
-    font-size: 1.8em;
+    padding: 40px 0px;
+    color: #fff;
+    font-size: 1.8em
 }
 
 .App-title {
-    font-size: 0.6em;
+    font-size: .6em
 }
 
 .App-intro {
-    font-size: large;
+    font-size: large
 }
 
 .btn-start {
-    background-color: #008CBA;
-    /* Blue */
+    background-color: #008cba;
     border: none;
-    color: white;
+    color: #fff;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 16px
 }
 
 .btn-play {
@@ -46,42 +40,33 @@ body {
     height: 20%;
     max-width: 80px;
     max-height: 80px;
-    background-color: #CCC;
+    background-color: #ccc
 }
 
 #tabela {
     margin: 5px auto;
     max-height: 100px;
-    width: 90%;
+    width: 96%
 }
 
 td {
-    width: 11%;
+    width: 12%;
+    border: 3px solid #000;
+    border-radius: 3px
+}
+
+.img-btn,
+td {
     height: auto;
-    border: 3px solid black;
-    border-radius: 3px;
-    padding: 0;
+    padding: 0
 }
 
 .img-btn {
     width: 100%;
-    height: auto;
-    padding: 0;
     margin: 0 auto;
-    overflow: hidden;
-    float: left;
 }
 
-.btn-txt {
-    font-size: large;
-    float: left;
-}
-
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.Play-header {
+    display: flex;
+    justify-content: space-around;
 }

@@ -10,6 +10,7 @@ class MyButton extends Component {
       color: "#000",
       colortxt: "#fff",
       lock: false,
+      opacity: 1,
     }
     this.handleClick = this.handleClick.bind(this);
   }
@@ -42,7 +43,9 @@ class MyButton extends Component {
 
   makemeGreen(){
     this.setState({color: "#2c2", colortxt: "#2c2", lock: true})
-    this.setState({lock: false})
+    setTimeout(function() { //Start the timer to turn white again
+      this.setState({color: "#000", colortxt: "#000", opacity: 0})
+    }.bind(this), 1500)
   }
 
   makemeRed(){
@@ -68,6 +71,7 @@ class MyButton extends Component {
       <td style={{borderColor: this.state.color, background: this.state.colortxt}}>
       <a onClick={this.handleClick}>
         <img className='img-btn'
+          style={{opacity: this.state.opacity}}
           alt={this.props.what.name}
           src={this.props.what.img} />
           <p className='App-intro'

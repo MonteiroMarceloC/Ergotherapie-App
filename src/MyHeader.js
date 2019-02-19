@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 
 class MyHeader extends Component {  
   render() {
@@ -10,14 +11,26 @@ class MyHeader extends Component {
           </p>
         }
         {this.props.num === 2 &&
-          <p className="App-title"> 
+        <div className="Play-header">
+          <p className="App-intro"> 
           Versuchen Sie, die Doppel zu finden.<br></br>
           Achtung: Nachdem Sie es einmal gefunden haben, wählen Sie es nicht mehr aus!
           </p>
+          <p>
+            Punkte: {this.props.pontos}
+          </p>
+        </div>
         }
         </header>
+        
     );
   }
 }
 
-export default MyHeader;
+function mapStateToProps(appState){
+  return{
+    pontos: appState.done_words.length
+  }
+}
+
+export default connect(mapStateToProps)(MyHeader);
