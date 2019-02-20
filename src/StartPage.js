@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './index.css';
 import MyHeader from './MyHeader.js';
+import ModalPage from './ModalPage.js';
+
 
 
 class StartPage extends Component {
@@ -14,6 +16,7 @@ class StartPage extends Component {
          <b>Achtung: </b><br></br>Nachdem Sie es einmal gefunden haben, wählen Sie es nicht mehr aus!
         </p><br></br>
         <button onClick={this.props.onStartPress} className="btn-start">Start</button>
+        <ModalPage/>
       </div>
     );
   }
