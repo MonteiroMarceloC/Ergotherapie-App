@@ -16,6 +16,9 @@ import Coffee from './imgs/coffee.jpg';
 import Full from './imgs/full.jpg';
 import Blume from './imgs/blume.jpg';
 import Milch from './imgs/milch.jpg';
+import {connect} from 'react-redux';
+import ModalPage from './ModalPage.js';
+
 
 const data=[
   {
@@ -78,13 +81,15 @@ const data=[
 class PlayPage extends Component {
   constructor(props){
     super(props);
-    this.handleClick = this.handleClick.bind(this);
     this.state={
       alldata: [],
-      lastclick:'',
-      done: [],
-      selectedIndexes: {}
+      modalDisplay: "none",
+      numOpen: 0,
+      showRestart: false,
     }
+    this.handleChangeOpen = this.handleChangeOpen.bind(this);
+    this.handleRestart = this.handleRestart.bind(this);
+
   }
 
   componentDidMount(){
@@ -97,7 +102,6 @@ class PlayPage extends Component {
     while (auxarr.length > 9) {
     auxarr.splice(Math.random()*auxarr.length, 1);
     }
-    console.log(auxarr);
     //create 3 clones
     var auxarr2 = [];
     while (auxarr2.length < 3){
@@ -119,28 +123,47 @@ class PlayPage extends Component {
     this.setState({alldata: arrMaster})
   }
 
-  handleClick(e){
-    if (this.state.lastclick === ''){
-      this.setState({lastclick: e.name})
-    } else if (this.state.lastclick === e.name){
-      this.setState((prev)=>({
-        done: prev.done.push(e.name)
-      }))
-      this.setState({lastclick: ''});
+  handleChangeOpen(b){
+    if(b && this.state.numOpen===0){
+      this.setState((prev)=> ({numOpen: 1}));
+      this.setState({modalDisplay: "block"})
+    } else if (!b && this.state.numOpen===1){
+      this.setState((prev)=> (
+        {
+          numOpen: prev.numOpen++,
+          modalDisplay: "none",
+          showRestart: true,
+        }));
     }
+  }
+
+  handleRestart(){
+    this.setState({
+      alldata: [],
+      modalDisplay: "none",
+      numOpen: 0,
+      showRestart: false,
+    })
+    this.newscreen();
   }
 
   render() {
     return (
       <div>
-      <MyHeader num={2} />
+      <MyHeader num={2} pts={this.props.pontos}/>
+
+      { /*this.state.showRestart &&
+        <button className="btn-start" onClick = {this.handleRestart}>Nächstes Level</button>
+      */}
+
       <div id='tabela'>               
         {this.state.alldata[2] && //wait until alldata matrix is ready
           <table><tbody>
           {this.state.alldata.map((row, index)=>
           <tr>
             {row.map((elem)=>
-                <MyButton what={elem}           
+                <MyButton what={elem}
+                openModal={this.handleChangeOpen}    
                 />
             )}
           </tr>
@@ -148,9 +171,20 @@ class PlayPage extends Component {
           </tbody></table>
         }
       </div>
+      {this.state.modalDisplay !== "none" &&
+      <ModalPage restart = {this.handleRestart}
+                close={this.handleChangeOpen}
+                display={this.state.modalDisplay}/>
+      }
       </div>
     );
   }
 }
 
-export default PlayPage;
+function mapStateToProps(appState){
+  return{
+    pontos: appState.done_words.length
+  }
+}
+
+export default connect(mapStateToProps)(PlayPage);

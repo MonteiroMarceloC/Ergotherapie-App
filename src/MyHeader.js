@@ -17,7 +17,7 @@ class MyHeader extends Component {
           Achtung: Nachdem Sie es einmal gefunden haben, wählen Sie es nicht mehr aus!
           </p>
           <p>
-            Punkte: {this.props.pontos}
+            Punkte: {this.props.pts}
           </p>
         </div>
         }

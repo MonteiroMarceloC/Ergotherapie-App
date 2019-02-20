@@ -1,36 +1,30 @@
 import React, { Component } from 'react';
-import { Modal, ModalHeader, ModalFooter, ModalBody } from 'mdbreact';
-import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
 
 class ModalPage extends Component {
-state = {
-  modal14: false
-}
+  constructor(props){
+    super(props);
+    this.state={
+      
+    }
+    this.closeMe = this.closeMe.bind(this);
+  }
 
-toggle = nr => () => {
-  let modalNumber = 'modal' + nr
-  this.setState({
-    [modalNumber]: !this.state[modalNumber]
-  });
-}
+  closeMe(){
+    this.props.close(false);
+  }
 
-render() {
-  return (
-      <MDBContainer>
-        <MDBBtn color="primary" onClick={this.toggle(14)}>MDBModal</MDBBtn>
-        <MDBModal isOpen={this.state.modal14} toggle={this.toggle(14)} centered>
-          <MDBModalHeader toggle={this.toggle(14)}>MDBModal title</MDBModalHeader>
-          <MDBModalBody>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat.
-          </MDBModalBody>
-          <MDBModalFooter>
-            <MDBBtn color="secondary" onClick={this.toggle(14)}>Close</MDBBtn>
-            <MDBBtn color="primary">Save changes</MDBBtn>
-          </MDBModalFooter>
-        </MDBModal>
-      </MDBContainer>
+  render() {
+    return (
+      <div id="myModal" className="modal" style={{display: this.props.display}}>
+        <div className="modal-content">
+          <span className="close" onClick={this.closeMe}>&times;</span>
+          <p className="App-intro">Glückwunsch, Sie haben die Herausforderung abgeschlossen!<br/>
+                                    Drücken Sie F5, um neu zu starten.</p>
+          {//<button className="btn-start" onClick={this.props.restart}>Nächstes Level</button>
+          }
+        </div>
+      
+      </div>
     );
   }
 }

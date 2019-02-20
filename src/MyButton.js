@@ -44,7 +44,10 @@ class MyButton extends Component {
   makemeGreen(){
     this.setState({color: "#2c2", colortxt: "#2c2", lock: true})
     setTimeout(function() { //Start the timer to turn white again
-      this.setState({color: "#000", colortxt: "#000", opacity: 0})
+      this.setState({color: "#000", colortxt: "#000", opacity: 0});
+      if(this.props.done.length > 8){
+        this.props.openModal(true);
+      }
     }.bind(this), 1500)
   }
 

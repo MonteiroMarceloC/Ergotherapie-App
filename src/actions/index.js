@@ -3,7 +3,6 @@ export const RESET_SELECTION = 'RESET_SELECTION'
 export const ADD_DONE = 'ADD_DONE'
 export const NEW_TURN = 'NEW_TURN'
 
-
 export function setSelection(name){
     return {
         type: SET_SELECTION,
